@@ -1,0 +1,26 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+  echo-job:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: echo "Hello Daniel"
+            - run: echo "Hello Circle ci"
+workflows:
+    build-and-test:
+      jobs:
+        - echo-job
