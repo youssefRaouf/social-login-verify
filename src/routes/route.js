@@ -9,7 +9,7 @@ export default class LoginRouter {
 
     initializeRoutes() {
         this.app.post('/login', async (req, res) => {
-            const user = await LoginController.login(req.body.type)
+            const user = await LoginController.login(req.body.type,req.body.token)
             res.json(user)
         });
         this.app.get('/register', async (req, res) => {
